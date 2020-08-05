@@ -1,3 +1,5 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 function addConfigs(r, c) {
 	Object.entries(c).forEach(([key, value]) => {
 		if (!value) return;
@@ -7,10 +9,19 @@ function addConfigs(r, c) {
 }
 
 exports.loadCSS = (config = {}) => {
-	// basic rule
 	const rule = {
 		test: /\.css$/i,
 		use: ['style-loader', 'css-loader'],
+	};
+
+	return addConfigs(rule, config);
+};
+
+exports.extractCSS = (config = {}) => {
+	// basic rule
+	const rule = {
+		test: /\.css$/i,
+		use: [MiniCssExtractPlugin.loader, 'css-loader'],
 	};
 
 	return addConfigs(rule, config);

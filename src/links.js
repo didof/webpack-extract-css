@@ -6,6 +6,6 @@ export default [
 	},
 	{
 		label: 'GitHub',
-		url: 'https://github.com/didof/webpack-inline-css',
+		url: 'https://github.com/didof/webpack-extract-css',
 	},
 ];

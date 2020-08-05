@@ -1,13 +1,15 @@
-const { loadCSS } = require('./loaders');
+const { loadCSS, extractCSS } = require('./loaders');
 
 module.exports = (env) => {
 	const loaders = {
 		css: (i) => {
 			switch (i) {
 				case 'inline':
-					return loadCSS()
+					return loadCSS();
+				case 'MCEP':
+					return extractCSS();
 				default:
-					throw new Error('production is not implemented yet');
+					throw new Error(`The instruction ${i} is not covered`);
 			}
 		},
 	};
@@ -16,7 +18,7 @@ module.exports = (env) => {
 	const instructions = {
 		css: {
 			development: 'inline',
-			production: null,
+			production: 'MCEP',
 		},
 	};
 
